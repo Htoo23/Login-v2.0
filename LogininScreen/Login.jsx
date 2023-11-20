@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useLayoutEffect } from 'react';
 import {
   View,
   Text,
@@ -45,14 +45,46 @@ const Login = () => {
 
   const handlePayment=()=>{
     navigation.navigate('Payment')
-  }
+  };
+   const handleProfile=()=>{
+    navigation.navigate('Profile')
+   };
+   const handleHome=()=>{
+    navigation.navigate('Home')
+   };
+   useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={handleProfile}>
+          <AntDesign name="user" size={24} color="black" style={styles.headerIcon} />
+        </TouchableOpacity>
+      ),
+      headerTitleContainerStyle: {
+        left: 0,
+        right: 0,
+        position: 'absolute',
+      },
+      headerTitle: () => (
+        <View style={styles.headerTitleContainer}>
+          <Text style={styles.title1}>YOMA</Text>
+        </View>
+      ),
+      headerRight: () => (
+        <TouchableOpacity onPress={handleHome}>
+          <AntDesign name="home" size={24} color="black" style={styles.headerIcon} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'android' ? 'padding' : 'height'}
     >
-      <Text style={styles.title}>Welcome from RealWorld!</Text>
+      
+      <Text style={styles.title}>Log-In</Text>
+      
 
       <View style={styles.inputContainer}>
         <Icon name="envelope" size={20} color="#888" style={styles.icon} />
@@ -130,10 +162,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
   },
+  headerTitleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerIcon: {
+    marginHorizontal: 10,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    
+  
+    
+    
+  },
+  title1:{
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop:15,
+    marginLeft:135,
   },
   inputContainer: {
     flexDirection: 'row',
