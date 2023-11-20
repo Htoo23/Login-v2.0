@@ -43,6 +43,10 @@ const Login = () => {
     navigation.navigate('Signup');
   };
 
+  const handlePayment=()=>{
+    navigation.navigate('Payment')
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -76,13 +80,20 @@ const Login = () => {
 
       <TouchableOpacity style={styles.microsoftButton} onPress={handleLogin}>
         <AntDesign name="windows" size={20} color="white" style={styles.icon} />
-        <Text style={styles.buttonText}>Log in With Microsoft</Text>
+        <Text style={styles.buttonText1}>Log in With Microsoft</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.microsoftButton} onPress={handleSignUp}>
         <AntDesign name="windows" size={20} color="white" style={styles.icon} />
-        <Text style={styles.buttonText}>Sign Up With Microsoft</Text>
+        <Text style={styles.buttonText1}>Sign Up With Microsoft</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.microsoftButton} onPress={handlePayment}>
+        <AntDesign name="windows" size={20} color="white" style={styles.icon} />
+        <Text style={styles.buttonText1}>Payment Info</Text>
+      </TouchableOpacity>
+
+      
 
       
       <Modal visible={showForgotPassword} transparent animationType="slide">
@@ -154,6 +165,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: '100%',
     justifyContent: 'center',
+  },
+  buttonText1:{
+    color: 'white',
+    fontWeight: 'bold',
+    marginLeft: 35,
+    marginRight:5,
+    width:'50%',
   },
   buttonText: {
     color: 'white',

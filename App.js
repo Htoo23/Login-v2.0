@@ -3,8 +3,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './LoginScreen/Login';
+import Login from './LogininScreen/Login';
 import Signup from './SignUpScreen/Signup';
+import PaymentScreen from './PaymentScreen/Payment';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const App = () => {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup}/>
+        <Stack.Screen name="Payment" component={PaymentScreen}/>
        
       </Stack.Navigator>
     </NavigationContainer>
