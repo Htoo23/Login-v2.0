@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Image, StyleSheet } from 'react-native';
-import { Text, TextInput, Button } from 'react-native-paper';
+import { Text, TextInput, Button, Provider as PaperProvider } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const Profile = () => {
   const [editable, setEditable] = useState(false);
@@ -21,108 +22,141 @@ const Profile = () => {
   };
 
   const handleSavePress = () => {
-    setEditable(false);
-    
-    // Save or send the profileData JSON object as needed
-    console.log("Saving profile data:", profileData);
+    // Perform form validation
+    if (isFormValid()) {
+      setEditable(false);
+      // Save or send the profileData JSON object as needed
+      console.log("Saving profile data:", profileData);
+    } else {
+      // Show an error message or handle validation failure
+      console.log("Form validation failed. Please fill in all required fields.");
+    }
   };
+  const isFormValid = () => {
+    // Check if any required field is empty
+    return Object.values(profileData).every(value => value !== "");
+  };
+  
   const isSaveDisabled = () => {
     // Disable the "Save" button if any TextInput is blank
     return Object.values(profileData).some(value => value === "");
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image source={require('../assets/logo.png')} style={styles.image} />
-        <Text style={styles.idText}>Employee ID: 010311</Text>
+    <PaperProvider>
+      <View style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Image source={require('../assets/logo.png')} style={styles.image} />
+          <Text style={styles.idText}>Employee ID: 010311</Text>
 
-        {/* Textboxes for additional information */}
-        <TextInput
-          label="Name"
-          value={profileData.name}
-          onChangeText={(text) => setProfileData({ ...profileData, name: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="user" size={20} />} />}
-        />
-        <TextInput
-          label="Phone"
-          value={profileData.phone}
-          onChangeText={(text) => setProfileData({ ...profileData, phone: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="phone" size={20} />} />}
-        />
-        <TextInput
-          label="Date Of Birth"
-          value={profileData.dob}
-          onChangeText={(text) => setProfileData({ ...profileData, dob: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="calendar" size={20} />} />}
-        />
-        <TextInput
-          label="Blood Type"
-          value={profileData.bloodType}
-          onChangeText={(text) => setProfileData({ ...profileData, bloodType: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="tint" size={20} />} />}
-        />
-        <TextInput
-          label="Address"
-          value={profileData.address}
-          onChangeText={(text) => setProfileData({ ...profileData, address: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="map-marker" size={20} />} />}
-        />
-        <TextInput
-          label="Father Name"
-          value={profileData.fatherName}
-          onChangeText={(text) => setProfileData({ ...profileData, fatherName: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="user" size={20} />} />}
-        />
-        <TextInput
-          label="Business Name"
-          value={profileData.businessName}
-          onChangeText={(text) => setProfileData({ ...profileData, businessName: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="briefcase" size={20} />} />}
-        />
-        <TextInput
-          label="Business Location"
-          value={profileData.businessLocation}
-          onChangeText={(text) => setProfileData({ ...profileData, businessLocation: text })}
-          editable={editable}
-          style={styles.input}
-          left={<TextInput.Icon icon={() => <Icon name="map-marker" size={20} />} />}
-        />
+          {/* Textboxes for additional information */}
+          <TextInput
+            label="Name"
+            value={profileData.name}
+            onChangeText={(text) => setProfileData({ ...profileData, name: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="user" size={20} />} />}
+          />
+          <TextInput
+            label="Phone"
+            value={profileData.phone}
+            onChangeText={(text) => setProfileData({ ...profileData, phone: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="phone" size={20} />} />}
+          />
+          <TextInput
+            label="Date Of Birth"
+            value={profileData.dob}
+            onChangeText={(text) => setProfileData({ ...profileData, dob: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="calendar" size={20} />} />}
+          />
+          <TextInput
+            label="Blood Type"
+            value={profileData.bloodType}
+            onChangeText={(text) => setProfileData({ ...profileData, bloodType: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="tint" size={20} />} />}
+          />
+          <TextInput
+            label="Address"
+            value={profileData.address}
+            onChangeText={(text) => setProfileData({ ...profileData, address: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="map-marker" size={20} />} />}
+          />
+          <TextInput
+            label="Father Name"
+            value={profileData.fatherName}
+            onChangeText={(text) => setProfileData({ ...profileData, fatherName: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="user" size={20} />} />}
+          />
+          <TextInput
+            label="Business Name"
+            value={profileData.businessName}
+            onChangeText={(text) => setProfileData({ ...profileData, businessName: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="briefcase" size={20} />} />}
+          />
+          <TextInput
+            label="Business Location"
+            value={profileData.businessLocation}
+            onChangeText={(text) => setProfileData({ ...profileData, businessLocation: text })}
+            editable={editable}
+            mode="outlined"
+            style={styles.input}
+            left={<TextInput.Icon icon={() => <Icon name="map-marker" size={20} />} />}
+          />
 
-        {/* Edit button */}
-        {!editable && (
-          <Button mode="contained" onPress={handleEditPress} style={styles.button}>
-            Edit
-          </Button>
-        )}
+          {/* Edit button */}
+          {!editable && (
+            <Button
+              mode="contained"
+              onPress={handleEditPress}
+              style={[styles.button, { backgroundColor: 'black' }]}
+            >
+              Edit
+            </Button>
+          )}
 
-        {/* Save button */}
-        {editable && (
-          <Button
-            mode="contained"
-            onPress={handleSavePress}
-            style={styles.saveButton}
-            disabled={isSaveDisabled()}
-          >
-            Save
-          </Button>
-        )}
+          {/* Save and Cancel buttons */}
+          {editable && (
+            <View style={styles.buttonContainer}>
+              <Button
+                mode="contained"
+                onPress={handleSavePress}
+                style={[styles.saveButton, styles.saveCancelButton]}
+                disabled={isSaveDisabled()}
+              >
+                Save
+              </Button>
+              <Button
+                mode="contained"
+                onPress={() => setEditable(false)}
+                style={[styles.button, styles.saveCancelButton]}
+              >
+                Cancel
+              </Button>
+            </View>
+          )}
+        </View>
       </View>
-    </View>
+    </PaperProvider>
   );
 };
 
@@ -160,11 +194,23 @@ const styles = StyleSheet.create({
 
   saveButton: {
     marginTop: 10,
-    backgroundColor: 'green', // Adjust the color as needed
+     
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+
+  saveCancelButton: {
+    flex: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    backgroundColor: 'black'
   },
 });
 
