@@ -36,10 +36,22 @@ const Profile = () => {
     // Check if any required field is empty
     return Object.values(profileData).every(value => value !== "");
   };
-  
+  const handlePhoneChange = (text) => {
+    // Check if the input contains only digits
+    if (/^\d+$/.test(text) || text === "") {
+      setProfileData({ ...profileData, phone: text });
+    }
+  };
+
   const isSaveDisabled = () => {
     // Disable the "Save" button if any TextInput is blank
     return Object.values(profileData).some(value => value === "");
+  };
+  const handleNameChange = (text) => {
+    // Check if the input contains only letters
+    if (/^[a-zA-Z]+$/.test(text) || text === "") {
+      setProfileData({ ...profileData, name: text });
+    }
   };
 
   return (
@@ -53,7 +65,7 @@ const Profile = () => {
           <TextInput
             label="Name"
             value={profileData.name}
-            onChangeText={(text) => setProfileData({ ...profileData, name: text })}
+            onChangeText={(text) => handleNameChange(text)}
             editable={editable}
             mode="outlined"
             style={styles.input}
@@ -62,12 +74,13 @@ const Profile = () => {
           <TextInput
             label="Phone"
             value={profileData.phone}
-            onChangeText={(text) => setProfileData({ ...profileData, phone: text })}
+            onChangeText={(text) => handlePhoneChange(text)}
             editable={editable}
             mode="outlined"
             style={styles.input}
             left={<TextInput.Icon icon={() => <Icon name="phone" size={20} />} />}
           />
+
           <TextInput
             label="Date Of Birth"
             value={profileData.dob}
@@ -128,7 +141,7 @@ const Profile = () => {
             <Button
               mode="contained"
               onPress={handleEditPress}
-              style={[styles.button, { backgroundColor: 'black' }]}
+              style={[styles.button, { backgroundColor: 'orange' }]}
             >
               Edit
             </Button>
@@ -142,13 +155,15 @@ const Profile = () => {
                 onPress={handleSavePress}
                 style={[styles.saveButton, styles.saveCancelButton]}
                 disabled={isSaveDisabled()}
+                disabledTitleStyle={{ color: 'white' }}
               >
                 Save
               </Button>
+
               <Button
                 mode="contained"
                 onPress={() => setEditable(false)}
-                style={[styles.button, styles.saveCancelButton]}
+                style={[styles.button, styles.saveCancelButton, { backgroundColor: 'black' }]}
               >
                 Cancel
               </Button>
@@ -186,7 +201,7 @@ const styles = StyleSheet.create({
   input: {
     width: 250,
     marginBottom: 10,
-    
+
   },
   button: {
     marginTop: 10,
@@ -194,7 +209,9 @@ const styles = StyleSheet.create({
 
   saveButton: {
     marginTop: 10,
-     
+    backgroundColor: 'green',
+
+    // Adjust the color as needed
   },
   title: {
     fontSize: 24,
@@ -210,7 +227,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 5,
     marginRight: 5,
-    backgroundColor: 'black'
+
   },
 });
 
