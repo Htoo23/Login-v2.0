@@ -22,37 +22,49 @@ const Profile = () => {
   };
 
   const handleSavePress = () => {
-    // Perform form validation
+
     if (isFormValid()) {
       setEditable(false);
-      // Save or send the profileData JSON object as needed
+
       console.log("Saving profile data:", profileData);
     } else {
-      // Show an error message or handle validation failure
+
       console.log("Form validation failed. Please fill in all required fields.");
     }
   };
   const isFormValid = () => {
-    // Check if any required field is empty
+
     return Object.values(profileData).every(value => value !== "");
   };
   const handlePhoneChange = (text) => {
-    // Check if the input contains only digits
-    if (/^\d+$/.test(text) || text === "") {
+
+    if (/^\d+$/.test(text) && text.length <= 11 || text === "") {
       setProfileData({ ...profileData, phone: text });
     }
   };
 
+
   const isSaveDisabled = () => {
-    // Disable the "Save" button if any TextInput is blank
+
     return Object.values(profileData).some(value => value === "");
   };
   const handleNameChange = (text) => {
-    // Check if the input contains only letters
+
     if (/^[a-zA-Z]+$/.test(text) || text === "") {
       setProfileData({ ...profileData, name: text });
     }
   };
+  const handlebloodTypeChange = (text) => {
+    if (/^[a-zA-Z]+$/.test(text) || text === "") {
+      setProfileData({ ...profileData, bloodType: text });
+    }
+  };
+  const handlefatherNameChange=(text)=>{
+    if (/^[a-zA-Z]+$/.test(text) || text === ""){
+      setProfileData({...profileData,fatherName:text})
+    }
+
+  }
 
   return (
     <PaperProvider>
@@ -61,7 +73,7 @@ const Profile = () => {
           <Image source={require('../assets/logo.png')} style={styles.image} />
           <Text style={styles.idText}>Employee ID: 010311</Text>
 
-          {/* Textboxes for additional information */}
+
           <TextInput
             label="Name"
             value={profileData.name}
@@ -93,7 +105,7 @@ const Profile = () => {
           <TextInput
             label="Blood Type"
             value={profileData.bloodType}
-            onChangeText={(text) => setProfileData({ ...profileData, bloodType: text })}
+            onChangeText={(text) => handlebloodTypeChange(text)}
             editable={editable}
             mode="outlined"
             style={styles.input}
@@ -111,7 +123,7 @@ const Profile = () => {
           <TextInput
             label="Father Name"
             value={profileData.fatherName}
-            onChangeText={(text) => setProfileData({ ...profileData, fatherName: text })}
+            onChangeText={(text) => handlefatherNameChange(text)}
             editable={editable}
             mode="outlined"
             style={styles.input}
@@ -136,7 +148,6 @@ const Profile = () => {
             left={<TextInput.Icon icon={() => <Icon name="map-marker" size={20} />} />}
           />
 
-          {/* Edit button */}
           {!editable && (
             <Button
               mode="contained"
@@ -146,8 +157,6 @@ const Profile = () => {
               Edit
             </Button>
           )}
-
-          {/* Save and Cancel buttons */}
           {editable && (
             <View style={styles.buttonContainer}>
               <Button
