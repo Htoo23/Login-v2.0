@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native';
+import { Surface } from "react-native-paper";
 
 const Home = () => {
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -40,6 +41,23 @@ const Home = () => {
           </Animated.Text>
         </View>
         <Text style={styles.services}>Services</Text>
+      </View>
+      <View style={styles.surfaceContainer}>
+        <View style={styles.surfaceRow}>
+          <Surface style={styles.surface}></Surface>
+          <Surface style={styles.surface}></Surface>
+          <Surface style={styles.surface}></Surface>
+        </View>
+        <View style={styles.surfaceRow}>
+        <Surface style={styles.surface}></Surface>
+        <Surface style={styles.surface}></Surface>
+        <Surface style={styles.surface}></Surface>
+        </View>
+        <View style={styles.surfaceRow}>
+        <Surface style={styles.surface}></Surface>
+        <Surface style={styles.surface}></Surface>
+        <Surface style={[styles.surface,{ opacity: 0 }]}></Surface>
+        </View>
       </View>
     </View>
   );
@@ -101,6 +119,22 @@ const styles=StyleSheet.create({
     // borderWidth:1,
     // borderColor:"red",
   },
+  surfaceContainer:{
+    marginTop:20,
+    paddingHorizontal:25,
+  },
+  surfaceRow:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginBottom:10,
+  },
+  surface:{
+    padding:40,
+    top:60,
+    elevation:4,
+    borderRadius:10,
+    backgroundColor:'#fff',
+  }
 
 
   
