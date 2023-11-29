@@ -3,6 +3,42 @@ import { View, Text, StyleSheet, Image, Animated, Easing } from 'react-native';
 import { Surface } from "react-native-paper";
 
 const Home = () => {
+
+  const data=[
+    {
+      appImage:require("../assets/smile.png"),
+      app_name:"SMILE Merchant Onboarding"
+    },
+    {
+      appImage:require("../assets/branch-cob.png"),
+      app_name:"Branch Customer Onboarding"
+    },
+    {
+      appImage:require("../assets/assisted-cob.png"),
+      app_name:"Assisted Customer Onboarding"
+    },
+    {
+      appImage:require("../assets/hp-cob.png"),
+      app_name:"HP Customer Onboarding"
+    },
+    {
+      appImage:require("../assets/yoma.png"),
+      app_name:"Next App Self Onboarding"
+    },
+    {
+      appImage:require("../assets/rsu-cob.png"),
+      app_name:"RSU Self Onboarding"
+    },
+    {
+      appImage: require("../assets/wave-yellow.png"),
+      app_name: "Wave Agent Onboarding"
+    },
+    {
+      appImage: require("../assets/wave-blue.png"),
+      app_name: "Wave Subscriber Onboarding"
+  }
+
+  ]
   const animatedValue = useRef(new Animated.Value(0)).current;
   const textWidth = 500;
 
