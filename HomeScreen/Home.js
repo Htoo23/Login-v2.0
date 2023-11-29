@@ -39,6 +39,7 @@ const Home = () => {
            Hello, Welcome Htoo Aung Lin! Have a Great Day!
           </Animated.Text>
         </View>
+        <Text style={styles.services}>Services</Text>
       </View>
     </View>
   );
@@ -80,6 +81,14 @@ const styles=StyleSheet.create({
     color:'#fff',
     fontWeight:"bold",
     fontSize:14,
+  },
+  services:{
+    position:"absolute",
+    marginTop:35,
+    left:10,
+    color:'red',
+    fontWeight:'bold',
+    fontSize:20,
   },
   textContainer: {
     marginTop: 10, 
