@@ -98,13 +98,13 @@ const Home = () => {
 
         </View>
         <View style={styles.surfaceRow}>
-          {data.slice(6,9).map((item, index) => (
+          {data.slice(6, 8).map((item, index) => (
             <Surface key={index} style={styles.surface}>
               <Image source={item.appImage} style={styles.surfaceImage} />
-
+              <Text style={styles.surfaceText}>{item.app_name}</Text>
             </Surface>
           ))}
-
+         <Surface style={[styles.surface, { opacity: 0 }]}></Surface>
         </View>
       </View>
     </View>
