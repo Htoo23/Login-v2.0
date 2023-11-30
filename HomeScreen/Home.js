@@ -104,7 +104,7 @@ const Home = () => {
               <Text style={styles.surfaceText}>{item.app_name}</Text>
             </Surface>
           ))}
-         <Surface style={[styles.surface, { opacity: 0 }]}></Surface>
+          <Surface style={[styles.surface, { opacity: 0 }]}></Surface>
         </View>
       </View>
     </View>
@@ -164,8 +164,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#000",
     fontWeight: "bold",
-    // borderWidth:1,
-    // borderColor:"red",
+    
   },
   surfaceContainer: {
     marginTop: 20,
@@ -187,9 +186,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   surfaceImage: {
-    width: 50, // Adjust the width based on your design
-    height: 40, // Adjust the height based on your design
-    resizeMode: 'contain', // Adjust the resizeMode based on your desigm
+    width: 50, 
+    height: 40, 
+    resizeMode: 'contain', 
     left: -25,
     bottom: 20,
 
@@ -197,7 +196,7 @@ const styles = StyleSheet.create({
   surfaceText: {
     marginTop: 0,
     textAlign: 'center',
-    fontSize: 10, // Adjust the font size based on your design
+    fontSize: 10, 
     fontWeight: 'bold',
 
   },
