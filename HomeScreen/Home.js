@@ -4,30 +4,30 @@ import { Surface } from "react-native-paper";
 
 const Home = () => {
 
-  const data=[
+  const data = [
     {
-      appImage:require("../assets/smile.png"),
-      app_name:"SMILE Merchant Onboarding"
+      appImage: require("../assets/smile.png"),
+      app_name: "SMILE Merchant Onboarding"
     },
     {
-      appImage:require("../assets/branch-cob.png"),
-      app_name:"Branch Customer Onboarding"
+      appImage: require("../assets/branch-cob.png"),
+      app_name: "Branch Customer Onboarding"
     },
     {
-      appImage:require("../assets/assisted-cob.png"),
-      app_name:"Assisted Customer Onboarding"
+      appImage: require("../assets/assisted-cob.png"),
+      app_name: "Assisted Customer Onboarding"
     },
     {
-      appImage:require("../assets/hp-cob.png"),
-      app_name:"HP Customer Onboarding"
+      appImage: require("../assets/hp-cob.png"),
+      app_name: "HP Customer Onboarding"
     },
     {
-      appImage:require("../assets/yoma.png"),
-      app_name:"Next App Self Onboarding"
+      appImage: require("../assets/yoma.png"),
+      app_name: "Next App Self Onboarding"
     },
     {
-      appImage:require("../assets/rsu-cob.png"),
-      app_name:"RSU Self Onboarding"
+      appImage: require("../assets/rsu-cob.png"),
+      app_name: "RSU Self Onboarding"
     },
     {
       appImage: require("../assets/wave-yellow.png"),
@@ -36,7 +36,7 @@ const Home = () => {
     {
       appImage: require("../assets/wave-blue.png"),
       app_name: "Wave Subscriber Onboarding"
-  }
+    }
 
   ]
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -73,32 +73,44 @@ const Home = () => {
               },
             ]}
           >
-           Hello, Welcome Htoo Aung Lin! Have a Great Day!
+            Hello, Welcome Htoo Aung Lin! Have a Great Day!
           </Animated.Text>
         </View>
         <Text style={styles.services}>Services</Text>
       </View>
       <View style={styles.surfaceContainer}>
         <View style={styles.surfaceRow}>
-          <Surface style={styles.surface}></Surface>
-          <Surface style={styles.surface}></Surface>
-          <Surface style={styles.surface}></Surface>
+          {data.slice(0, 3).map((item, index) => (
+            <Surface key={index} style={styles.surface}>
+              <Image source={item.appImage} style={styles.surfaceImage} />
+
+            </Surface>
+
+          ))}
         </View>
         <View style={styles.surfaceRow}>
-        <Surface style={styles.surface}></Surface>
-        <Surface style={styles.surface}></Surface>
-        <Surface style={styles.surface}></Surface>
+          {data.slice(3, 6).map((item, index) => (
+            <Surface key={index} style={styles.surface}>
+              <Image source={item.appImage} style={styles.surfaceImage} />
+
+            </Surface>
+          ))}
+
         </View>
         <View style={styles.surfaceRow}>
-        <Surface style={styles.surface}></Surface>
-        <Surface style={styles.surface}></Surface>
-        <Surface style={[styles.surface,{ opacity: 0 }]}></Surface>
+          {data.slice(6,9).map((item, index) => (
+            <Surface key={index} style={styles.surface}>
+              <Image source={item.appImage} style={styles.surfaceImage} />
+
+            </Surface>
+          ))}
+
         </View>
       </View>
     </View>
   );
 };
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
@@ -107,72 +119,90 @@ const styles=StyleSheet.create({
   },
   image: {
     height: 170,
-    width:500,
+    width: 500,
   },
-  apptext:{
-    fontSize:20,
-    color:'#fff',
-    fontWeight:'bold',
-    position:"absolute",
-    marginTop:50,
-    left:10,
-    width:184,
-    flexWrap:"wrap",
-    paddingBottom:30,
+  apptext: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    position: "absolute",
+    marginTop: 50,
+    left: 10,
+    width: 184,
+    flexWrap: "wrap",
+    paddingBottom: 30,
   },
-  joblocation:{
-    color:'#FFE513',
-    fontWeight:"bold",
-    fontSize:13,
-    position:"absolute",
-    marginTop:110,
-    left:10,
+  joblocation: {
+    color: '#FFE513',
+    fontWeight: "bold",
+    fontSize: 13,
+    position: "absolute",
+    marginTop: 110,
+    left: 10,
   },
-  jobposition:{
-    position:"absolute",
-    marginTop:135,
-    left:10,
-    color:'#fff',
-    fontWeight:"bold",
-    fontSize:14,
+  jobposition: {
+    position: "absolute",
+    marginTop: 135,
+    left: 10,
+    color: '#fff',
+    fontWeight: "bold",
+    fontSize: 14,
   },
-  services:{
-    position:"absolute",
-    marginTop:35,
-    left:10,
-    color:'red',
-    fontWeight:'bold',
-    fontSize:20,
+  services: {
+    position: "absolute",
+    marginTop: 35,
+    left: 10,
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
   textContainer: {
-    marginTop: 10, 
+    marginTop: 10,
     alignItems: "center",
   },
   animationtext: {
     fontSize: 15,
-    color: "#000", 
+    color: "#000",
     fontWeight: "bold",
     // borderWidth:1,
     // borderColor:"red",
   },
-  surfaceContainer:{
-    marginTop:20,
-    paddingHorizontal:25,
+  surfaceContainer: {
+    marginTop: 20,
+    paddingHorizontal: 25,
   },
-  surfaceRow:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    marginBottom:10,
+  surfaceRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+    paddingTop: 35,
   },
-  surface:{
-    padding:40,
-    top:60,
-    elevation:4,
-    borderRadius:10,
-    backgroundColor:'#fff',
-  }
+  surface: {
+    padding: 40,
+    top: 60,
+    width: 50,
+    height: 40,
+    elevation: 4,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+  },
+  surfaceImage: {
+    width: 50, // Adjust the width based on your design
+    height: 40, // Adjust the height based on your design
+    resizeMode: 'contain', // Adjust the resizeMode based on your desigm
+    left: -25,
+    bottom: 20,
+
+  },
+  surfaceText: {
+    marginTop: 0,
+    textAlign: 'center',
+    fontSize: 10, // Adjust the font size based on your design
+    fontWeight: 'bold',
+
+  },
 
 
-  
+
 });
 export default Home;
